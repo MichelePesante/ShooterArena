@@ -185,6 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ea0abbafbaf44b5ae427e2bf613fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletInput: 0
+  grenadeInput: 0
 --- !u!135 &135222455345617134
 SphereCollider:
   m_ObjectHideFlags: 1

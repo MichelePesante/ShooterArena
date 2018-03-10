@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
 	private float bulletSpeed;
 	private Vector3 direction;
+	private Vector3 bulletDirection;
 
 	public BulletState CurrentBulletState;
 
@@ -29,7 +30,10 @@ public class Bullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        CurrentBulletState = BulletState.InPool;
+		if (collision.gameObject.tag == "Player") {
+			collision.gameObject.transform.position += bulletDirection * bulletSpeed;
+		}
+		CurrentBulletState = BulletState.InPool;
     }
 
     public enum BulletState {
@@ -41,5 +45,6 @@ public class Bullet : MonoBehaviour {
 	{
 		direction = _direction;
 		transform.position = _startPosition;
+		bulletDirection = _direction;
 	}
 }
