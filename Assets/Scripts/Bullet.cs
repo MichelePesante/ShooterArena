@@ -27,14 +27,18 @@ public class Bullet : MonoBehaviour {
 		} 
 	}
 
+	void OnBecameInvisible () {
+		CurrentBulletState = BulletState.InPool;
+	}
+
 	public enum BulletState {
 		InPool = 0,
 		InScene = 1
 	}
 
-	public void ShootStartPosition(Vector3 _startPosition/*, Vector3 _direction*/) 
+	public void ShootStartPosition(Vector3 _startPosition, Vector3 _direction) 
 	{
-		//direction = _direction;
+		direction = _direction;
 		transform.position = _startPosition;
 	}
 }

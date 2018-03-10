@@ -6,9 +6,9 @@ public class PlayerInput : MonoBehaviour {
 
 	private float movementSpeed;
 	private float jumpSpeed;
+	public Vector3 direction;
 
 	private Rigidbody rb;
-	private Vector3 direction;
 	private bool isRotateRight;
 
 	// Use this for initialization
@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour {
 		if (!gameObject.GetComponent<Rigidbody> ())
 			rb = gameObject.AddComponent<Rigidbody> ();
 		rb.freezeRotation = true;
+		direction = Vector3.right;
 		isRotateRight = true;
 	}
 	

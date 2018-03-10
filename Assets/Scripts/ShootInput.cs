@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ShootInput : MonoBehaviour {
 	void Update() {
-		if (Input.GetKeyDown (KeyCode.A)) {
+		if (Input.GetKeyDown (KeyCode.Joystick1Button2)) {
 			Bullet bulletToShoot = FindObjectOfType<PoolManager> ().GetBullet ();
 			bulletToShoot.CurrentBulletState = Bullet.BulletState.InScene;
-			bulletToShoot.ShootStartPosition (transform.position);
+			bulletToShoot.ShootStartPosition (transform.position, FindObjectOfType<PlayerInput>().direction);
 		}
 	}
 }
