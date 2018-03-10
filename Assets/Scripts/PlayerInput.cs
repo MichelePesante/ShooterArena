@@ -21,13 +21,13 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.A)) {
+		if (Input.GetAxis ("Horizontal") == -1) {
 			transform.position += Vector3.left * movementSpeed;
 		}
-		if (Input.GetKey (KeyCode.D)) {
+		if (Input.GetAxis ("Horizontal") == 1) {
 			transform.position += Vector3.right * movementSpeed;
 		}
-		if (Input.GetKeyDown (KeyCode.W)) {
+		if (Input.GetKeyDown (KeyCode.Joystick1Button0)) {
 			rb.velocity = Vector3.up * jumpSpeed;
 		}
 	}
