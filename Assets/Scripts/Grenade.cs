@@ -50,6 +50,7 @@ public class Grenade : MonoBehaviour {
 		direction = _direction;
 		transform.position = _startPosition;
 
+        gameObject.transform.GetChild(1).GetComponent<MeshRenderer>().material.color = _color;
         gameObject.GetComponentInChildren<MeshRenderer>().material.color = _color;
     }
 

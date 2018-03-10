@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33742500884712992}
   - component: {fileID: 23369178629105258}
   m_Layer: 0
-  m_Name: Cube.001
+  m_Name: Liquid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c5b66354dbcf372459366ba77fd54391, type: 3}
+  - {fileID: 2100000, guid: fe8ba628366e1b441b66011d81ec5784, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -281,7 +281,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c5b66354dbcf372459366ba77fd54391, type: 3}
+  - {fileID: 2100000, guid: b8d157976e0f9ab4d878fbc58a77812b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
