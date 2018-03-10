@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class ShootInput : MonoBehaviour {
 
+	private int bulletsRound;
+	private int bulletsShooted;
+	private float timer;
+	private float reloadTime;
+	private float delayShootTime;
+
     public KeyCode bulletInput;
     public KeyCode grenadeInput;
 
     private void Start()
     {
+		bulletsRound = 5;
+		bulletsShooted = 0;
+		timer = 0.7f;
+		reloadTime = 2f;
+		delayShootTime = 0.7f;
+
         if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player0")
         {
             bulletInput = KeyCode.Joystick1Button2;
@@ -34,10 +46,19 @@ public class ShootInput : MonoBehaviour {
 
 
     void Update() {
-		if (Input.GetKeyDown (bulletInput)) {
+		timer += Time.deltaTime;
+
+		if (Input.GetKeyDown (bulletInput) && bulletsShooted < bulletsRound && timer >= delayShootTime) {
 			Bullet bulletToShoot = FindObjectOfType<PoolManager> ().GetBullet ();
 			bulletToShoot.CurrentBulletState = Bullet.BulletState.InScene;
 			bulletToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction);
+			bulletsShooted++;
+			timer = 0f;
+		}
+
+		if (bulletsShooted >= 5 && timer >= reloadTime) {
+			bulletsShooted = 0;
+			timer = 0.7f;
 		}
 
 		if (Input.GetKeyDown (grenadeInput)) {

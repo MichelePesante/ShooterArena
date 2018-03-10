@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CurrentBulletState = BulletState.InPool;
-		bulletSpeed = 0.5f;
+		bulletSpeed = 0.9f;
 		bulletForce = 20f;
 	}
 	
