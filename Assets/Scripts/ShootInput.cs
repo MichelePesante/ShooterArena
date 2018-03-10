@@ -37,13 +37,13 @@ public class ShootInput : MonoBehaviour {
 		if (Input.GetKeyDown (bulletInput)) {
 			Bullet bulletToShoot = FindObjectOfType<PoolManager> ().GetBullet ();
 			bulletToShoot.CurrentBulletState = Bullet.BulletState.InScene;
-			bulletToShoot.ShootStartPosition (transform.position, FindObjectOfType<PlayerInput>().direction);
+			bulletToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction);
 		}
 
 		if (Input.GetKeyDown (grenadeInput)) {
 			Grenade grenadeToShoot = FindObjectOfType<PoolManager> ().GetGrenade ();
 			grenadeToShoot.CurrentGrenadeState = Grenade.GrenadeState.InScene;
-			grenadeToShoot.ShootStartPosition (transform.position, FindObjectOfType<PlayerInput>().direction + Vector3.up);
+			grenadeToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction + Vector3.up);
 		}
 	}
 }
