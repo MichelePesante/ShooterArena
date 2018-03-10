@@ -28,10 +28,10 @@ public class Bullet : MonoBehaviour {
 		} 
 	}
 
-    private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter(Collider other)
     {
-		if (collision.gameObject.tag == "Player") {
-			collision.gameObject.transform.position += bulletDirection * bulletSpeed;
+		if (other.tag == "Player") {
+			other.transform.position += bulletDirection * bulletSpeed * 5;
 		}
 		CurrentBulletState = BulletState.InPool;
     }
