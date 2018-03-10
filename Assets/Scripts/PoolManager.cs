@@ -11,6 +11,12 @@ public class PoolManager : MonoBehaviour {
 
 	public Bullet BulletPrefab;
 	public Grenade GrenadePrefab;
+	public Vector3 PoolManagerPosition;
+
+	void Awake() 
+	{
+		PoolManagerPosition = transform.position;
+	}
 
 	void Start () {
 		for (int i = 0; i < maxBullets; i++) {
