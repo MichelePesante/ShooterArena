@@ -8,6 +8,7 @@ public class Grenade : MonoBehaviour {
 	private bool hasBeenShooted;
 	private Vector3 direction;
 	private Rigidbody rb;
+	private float explosionForce;
 
 	public GrenadeState CurrentGrenadeState;
 
@@ -18,13 +19,14 @@ public class Grenade : MonoBehaviour {
 			rb = gameObject.AddComponent<Rigidbody> ();
 		rb.freezeRotation = true;
 		grenadeSpeed = 15f;
+		explosionForce = 12f;
 		hasBeenShooted = false;
 	}
 		
 	void Update () {
 		if (CurrentGrenadeState == GrenadeState.InPool) 
 		{
-			transform.position = FindObjectOfType<PoolManager> ().PoolManagerPosition;
+			//transform.position = FindObjectOfType<PoolManager> ().PoolManagerPosition;
 			hasBeenShooted = false;
 		}
 		if (CurrentGrenadeState == GrenadeState.InScene && hasBeenShooted == false) 
@@ -47,5 +49,16 @@ public class Grenade : MonoBehaviour {
 	{
 		direction = _direction;
 		transform.position = _startPosition;
+	}
+
+	public void Explode()
+	{
+		for (int i = 0; i < transform.childCount; i++) 
+		{	
+			if (transform.GetChild(i).name == "Explosion")
+				transform.GetChild(i).localScale += new Vector3 (0f, explosionForce, 0f);
+			if (transform.GetChild (i).name == "Graphic")
+				transform.GetChild (i).GetComponent<MeshRenderer> ().enabled = false;
+		}
 	}
 }
