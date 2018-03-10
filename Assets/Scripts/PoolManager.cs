@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour {
 
-	// Use this for initialization
+	int MaxBullet = 20;
+	public Bullet Bullet;
+	List<Bullet> Bullets;
+
 	void Start () {
-		
+		for (int i = 0; i < MaxBullet; i++) {
+			Bullets.Add(Instantiate(Bullet));
+		}
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
+	}
+
+	public Bullet GetBullet() {
+		foreach (Bullet b in Bullets) {
+			if (b.CurrentBulletState == Bullet.BulletState.InPool) {
+				return Bullet;
+			}
+		}
 	}
 }

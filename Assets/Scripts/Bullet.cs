@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour {
 
 	private float bulletSpeed;
 
-	private BulletState CurrentBulletState;
+	public BulletState CurrentBulletState;
 
 	// Use this for initialization
 	void Start () {
