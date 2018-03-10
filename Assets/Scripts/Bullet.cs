@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour {
 
 	private float bulletSpeed;
 	private Vector3 direction;
-	private Vector3 bulletDirection;
+	private float bulletForce;
 
 	public BulletState CurrentBulletState;
 
@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour {
 	void Start () {
 		CurrentBulletState = BulletState.InPool;
 		bulletSpeed = 0.5f;
+		bulletForce = 20f;
 	}
 	
 	// Update is called once per frame
@@ -31,7 +32,7 @@ public class Bullet : MonoBehaviour {
 	private void OnTriggerEnter(Collider other)
     {
 		if (other.tag == "Player") {
-			other.transform.position += bulletDirection * bulletSpeed * 5;
+			other.GetComponent<Rigidbody>().velocity = direction * bulletForce;
 		}
 		CurrentBulletState = BulletState.InPool;
     }
@@ -45,6 +46,5 @@ public class Bullet : MonoBehaviour {
 	{
 		direction = _direction;
 		transform.position = _startPosition;
-		bulletDirection = _direction;
 	}
 }
