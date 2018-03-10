@@ -43,9 +43,10 @@ public class Grenade : MonoBehaviour {
 		InScene = 1
 	}
 
-	public void ShootStartPosition(Vector3 _startPosition, Vector3 _direction) 
+	public void ShootStartPosition(Vector3 _startPosition, Vector3 _direction, Color _color) 
 	{
 		direction = _direction;
 		transform.position = _startPosition;
-	}
+        gameObject.GetComponentInChildren<MeshRenderer>().material.color = _color;
+    }
 }
