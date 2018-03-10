@@ -72,7 +72,7 @@ public class PlayerInput : MonoBehaviour {
 				isRotateRight = true;
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.F) && !isJumping) 
+		if (Input.GetKeyDown (jumpInput) && !isJumping) 
 		{
 			rb.velocity = Vector3.up * jumpSpeed;
 			isJumping = true;
