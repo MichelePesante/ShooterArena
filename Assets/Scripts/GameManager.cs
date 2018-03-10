@@ -16,18 +16,22 @@ public class GameManager : MonoBehaviour {
                 case 0:
                     GameObject playerInstantation1 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
                     playerInstantation1.name = "Player" + i;
+                    playerInstantation1.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                     break;
                 case 1:
                     GameObject playerInstantation2 = Instantiate(playerPrefab, new Vector3(0f, 1f, 0f), Quaternion.identity);
                     playerInstantation2.name = "Player" + i;
+                    playerInstantation2.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
                     break;
                 case 2:
                     GameObject playerInstantation3 = Instantiate(playerPrefab, new Vector3(7f, 15f, 0f), Quaternion.identity);
                     playerInstantation3.name = "Player" + i;
+                    playerInstantation3.GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
                     break;
                 case 3:
                     GameObject playerInstantation4 = Instantiate(playerPrefab, new Vector3(3f, 15f, 0f), Quaternion.identity);
                     playerInstantation4.name = "Player" + i;
+                    playerInstantation4.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
                     break;
             }
         }
