@@ -16,8 +16,6 @@ public class PlayerInput : MonoBehaviour {
     private string verticalInput;
     private KeyCode jumpInput;
 
-    float timer;
-
 	void Start () {
 		isJumping = false;
 		movementSpeed = 0.2f;
@@ -57,7 +55,6 @@ public class PlayerInput : MonoBehaviour {
     }
 
 	void Update () {
-        timer += Time.deltaTime;
 
 		if (Input.GetAxis (horizontalInput) == -1) 
 		{
@@ -87,7 +84,6 @@ public class PlayerInput : MonoBehaviour {
         if (Input.GetAxis (verticalInput) == 1)
         {
             Physics.IgnoreLayerCollision(8, 9, true);
-            timer = 0;
         }
         else
         {
