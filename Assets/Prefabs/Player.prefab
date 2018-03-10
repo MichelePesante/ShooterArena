@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4146508487941536}
   - component: {fileID: 114180773489171806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114060763261879416}
   - component: {fileID: 54959631897952932}
   - component: {fileID: 135640207396665462}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 33699790439436450}
   - component: {fileID: 135222455345617134}
   - component: {fileID: 23379446941930260}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,9 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  horizontalInput: 
-  jumpInput: 0
-  controllers: []
 --- !u!114 &114180773489171806
 MonoBehaviour:
   m_ObjectHideFlags: 1
