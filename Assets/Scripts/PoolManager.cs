@@ -24,5 +24,6 @@ public class PoolManager : MonoBehaviour {
 				return Bullet;
 			}
 		}
+		return null;
 	}
 }
