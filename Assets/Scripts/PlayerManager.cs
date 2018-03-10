@@ -4,39 +4,42 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    public int numberOfPlayers = 4;
+    public static int numberOfPlayers;
 
-    public GameObject playerPrefab;
+    bool p1, p2, p3, p4;
 
-	// Use this for initialization
-	void Start () {
-        for (int i = 0; i < numberOfPlayers; i++)
-        {
-            switch (i)
-            {
-                case 0:
-                    GameObject playerInstantation1 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
-                    playerInstantation1.name = "Player" + i;
-                    break;
-                case 1:
-                    GameObject playerInstantation2 = Instantiate(playerPrefab, new Vector3(0f, 1f, 0f), Quaternion.identity);
-                    playerInstantation2.name = "Player" + i;
-                    break;
-                case 2:
-                    GameObject playerInstantation3 = Instantiate(playerPrefab, new Vector3(7f, 15f, 0f), Quaternion.identity);
-                    playerInstantation3.name = "Player" + i;
-                    break;
-                case 3:
-                    GameObject playerInstantation4 = Instantiate(playerPrefab, new Vector3(3f, 15f, 0f), Quaternion.identity);
-                    playerInstantation4.name = "Player" + i;
-                    break;
+    // Use this for initialization
+    void Start () {
 
-            }
-        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+        if (Input.GetKeyDown(KeyCode.Joystick1Button7) && !p1)
+        {
+            numberOfPlayers++;
+            p1 = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick2Button7) && !p2)
+        {
+            numberOfPlayers++;
+            p2 = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick3Button7) && !p3)
+        {
+            numberOfPlayers++;
+            p3 = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick4Button7) && !p4)
+        {
+            numberOfPlayers++;
+            p4 = true;
+        }
+
+        Debug.Log(numberOfPlayers);
+    }
 }
