@@ -6,18 +6,20 @@ public class PoolManager : MonoBehaviour {
 
 	private int maxBullets = 20;
 	private int maxGrenades = 12;
-	private List<Bullet> bullets;
-	private List<Grenade> grenades;
+	private List<Bullet> bullets = new List<Bullet>();
+	private List<Grenade> grenades = new List<Grenade>();
 
-	public Bullet Bullet;
-	public Grenade Grenade;
+	public Bullet BulletPrefab;
+	public Grenade GrenadePrefab;
 
 	void Start () {
 		for (int i = 0; i < maxBullets; i++) {
-			bullets.Add(Instantiate(Bullet));
+			Bullet bulletToAdd = (Instantiate (BulletPrefab));
+			bullets.Add (bulletToAdd);
 		}
 		for (int i = 0; i < maxGrenades; i++) {
-			grenades.Add (Instantiate (Grenade));
+			Grenade grenadeToAdd = (Instantiate (GrenadePrefab));
+			grenades.Add (grenadeToAdd);
 		}
 	}
 
@@ -28,7 +30,7 @@ public class PoolManager : MonoBehaviour {
 	public Bullet GetBullet() {
 		foreach (Bullet bullet in bullets) {
 			if (bullet.CurrentBulletState == Bullet.BulletState.InPool) {
-				return Bullet;
+				return bullet;
 			}
 		}
 		return null;
@@ -37,7 +39,7 @@ public class PoolManager : MonoBehaviour {
 	public Grenade GetGrenade() {
 		foreach (Grenade grenade in grenades) {
 			if (grenade.CurrentGrenadeState == Grenade.GrenadeState.InPool) {
-				return Grenade;
+				return grenade;
 			}
 		}
 		return null;
