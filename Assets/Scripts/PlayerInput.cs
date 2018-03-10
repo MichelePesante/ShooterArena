@@ -11,6 +11,10 @@ public class PlayerInput : MonoBehaviour {
 	private Rigidbody rb;
 	private bool isRotateRight;
 
+    public string horizontalInput;
+    public KeyCode jumpInput;
+    public string[] controllers;
+
 	// Use this for initialization
 	void Start () {
 		movementSpeed = 0.2f;
@@ -21,11 +25,38 @@ public class PlayerInput : MonoBehaviour {
 		rb.freezeRotation = true;
 		direction = Vector3.right;
 		isRotateRight = true;
-	}
+        controllers = Input.GetJoystickNames();
+
+
+        if (gameObject.name == "Player0")
+        {
+            horizontalInput = "Horizontal";
+            jumpInput = KeyCode.Joystick1Button0; 
+                }
+        else if (gameObject.name == "Player1")
+        {
+            horizontalInput = "Horizontal2";
+            jumpInput = KeyCode.Joystick2Button0;
+        }
+        else if (gameObject.name == "Player2")
+        {
+            horizontalInput = "Horizontal3";
+            jumpInput = KeyCode.Joystick3Button0;
+        }
+        else if (gameObject.name == "Player3")
+        {
+            horizontalInput = "Horizontal4";
+            jumpInput = KeyCode.Joystick4Button0;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetAxis ("Horizontal") == -1) {
+
+
+
+
+		if (Input.GetAxis (horizontalInput) == -1) {
 			direction = Vector3.left;
 			transform.position += direction * movementSpeed;
 			if (isRotateRight) {
@@ -33,7 +64,7 @@ public class PlayerInput : MonoBehaviour {
 				isRotateRight = false;
 			}
 		}
-		if (Input.GetAxis ("Horizontal") == 1) {
+		if (Input.GetAxis (horizontalInput) == 1) {
 			direction = Vector3.right;
 			transform.position += direction * movementSpeed;
 			if (!isRotateRight) {
@@ -41,7 +72,7 @@ public class PlayerInput : MonoBehaviour {
 				isRotateRight = true;
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.Joystick1Button0)) {
+		if (Input.GetKeyDown (jumpInput)) {
 			rb.velocity = Vector3.up * jumpSpeed;
 		}
 	}

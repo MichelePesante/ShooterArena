@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(Camera))]
 public class MultipleCameraFollow : MonoBehaviour {
 
-    public List<Transform> targets;
+    public List<PlayerInput> targets;
 
 
     public Vector3 offset;
@@ -23,6 +24,7 @@ public class MultipleCameraFollow : MonoBehaviour {
     private void Start()
     {
         cam = GetComponent<Camera>();
+        targets = FindObjectsOfType<PlayerInput>().ToList();
     }
 
 
@@ -55,10 +57,10 @@ public class MultipleCameraFollow : MonoBehaviour {
 
     float GetGreatestDistance()
     {
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
+        var bounds = new Bounds(targets[0].gameObject.transform.position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            bounds.Encapsulate(targets[i].gameObject.transform.position);
         }
 
         return bounds.size.x;
@@ -68,13 +70,13 @@ public class MultipleCameraFollow : MonoBehaviour {
     {
         if (targets.Count == 1)
         {
-            return targets[0].position;
+            return targets[0].gameObject.transform.position;
         }
 
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
+        var bounds = new Bounds(targets[0].gameObject.transform.position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            bounds.Encapsulate(targets[i].gameObject.transform.position);
         }
 
         return bounds.center;
