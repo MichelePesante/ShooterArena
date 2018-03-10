@@ -25,7 +25,6 @@ public class Grenade : MonoBehaviour {
 		if (CurrentGrenadeState == GrenadeState.InPool) 
 		{
 			transform.position = FindObjectOfType<PoolManager> ().PoolManagerPosition;
-			rb.velocity = Vector3.zero;
 			hasBeenShooted = false;
 		}
 		if (CurrentGrenadeState == GrenadeState.InScene && hasBeenShooted == false) 
@@ -35,7 +34,7 @@ public class Grenade : MonoBehaviour {
 		} 
 	}
 
-	void OnBecameInvisible () {
+	void OnCollisionEnter (Collision collision) {
 		CurrentGrenadeState = GrenadeState.InPool;
 	}
 
