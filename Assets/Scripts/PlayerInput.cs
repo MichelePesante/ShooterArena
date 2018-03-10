@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour {
 	private float movementSpeed;
 	private float jumpSpeed;
 	public Vector3 direction;
+	private bool isJumping;
 
 	private Rigidbody rb;
 	private bool isRotateRight;
@@ -15,8 +16,8 @@ public class PlayerInput : MonoBehaviour {
     public KeyCode jumpInput;
     public string[] controllers;
 
-	// Use this for initialization
 	void Start () {
+		isJumping = false;
 		movementSpeed = 0.2f;
 		jumpSpeed = 20f;
 		rb = gameObject.GetComponent<Rigidbody> ();
@@ -32,7 +33,7 @@ public class PlayerInput : MonoBehaviour {
         {
             horizontalInput = "Horizontal";
             jumpInput = KeyCode.Joystick1Button0; 
-                }
+        }
         else if (gameObject.name == "Player1")
         {
             horizontalInput = "Horizontal2";
@@ -49,31 +50,40 @@ public class PlayerInput : MonoBehaviour {
             jumpInput = KeyCode.Joystick4Button0;
         }
     }
-	
-	// Update is called once per frame
+
 	void Update () {
-
-
-
-
-		if (Input.GetAxis (horizontalInput) == -1) {
+		if (Input.GetAxis (horizontalInput) == -1) 
+		{
 			direction = Vector3.left;
 			transform.position += direction * movementSpeed;
-			if (isRotateRight) {
+			if (isRotateRight) 
+			{
 				transform.Rotate (0f, 180f, 0f);
 				isRotateRight = false;
 			}
 		}
-		if (Input.GetAxis (horizontalInput) == 1) {
+		if (Input.GetAxis (horizontalInput) == 1) 
+		{
 			direction = Vector3.right;
 			transform.position += direction * movementSpeed;
-			if (!isRotateRight) {
+			if (!isRotateRight) 
+			{
 				transform.Rotate (0f, -180f, 0f);
 				isRotateRight = true;
 			}
 		}
-		if (Input.GetKeyDown (jumpInput)) {
+		if (Input.GetKeyDown (KeyCode.F) && !isJumping) 
+		{
 			rb.velocity = Vector3.up * jumpSpeed;
+			isJumping = true;
+		}
+	}
+
+	void OnCollisionEnter(Collision _collision) 
+	{
+		if (_collision.gameObject.tag == "Ground" && isJumping) 
+		{
+			isJumping = false;
 		}
 	}
 }

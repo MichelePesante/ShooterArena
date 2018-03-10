@@ -27,11 +27,12 @@ public class Bullet : MonoBehaviour {
 		} 
 	}
 
-	void OnBecameInvisible () {
-		CurrentBulletState = BulletState.InPool;
-	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        CurrentBulletState = BulletState.InPool;
+    }
 
-	public enum BulletState {
+    public enum BulletState {
 		InPool = 0,
 		InScene = 1
 	}
