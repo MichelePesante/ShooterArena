@@ -13,6 +13,8 @@ public class ShootInput : MonoBehaviour {
     public KeyCode bulletInput;
     public KeyCode grenadeInput;
 
+    private Color projectileColor;
+
     private void Start()
     {
 		bulletsRound = 5;
@@ -25,21 +27,25 @@ public class ShootInput : MonoBehaviour {
         {
             bulletInput = KeyCode.Joystick1Button2;
             grenadeInput = KeyCode.Joystick1Button1;
+            projectileColor = Color.red;
         }
         else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player1")
         {
             bulletInput = KeyCode.Joystick2Button2;
             grenadeInput = KeyCode.Joystick2Button1;
+            projectileColor = Color.green;
         }
         else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player2")
         {
             bulletInput = KeyCode.Joystick3Button2;
             grenadeInput = KeyCode.Joystick3Button1;
+            projectileColor = Color.yellow;
         }
         else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player3")
         {
             bulletInput = KeyCode.Joystick4Button2;
             grenadeInput = KeyCode.Joystick4Button1;
+            projectileColor = Color.blue;
         }
 
     }
@@ -51,7 +57,7 @@ public class ShootInput : MonoBehaviour {
 		if (Input.GetKeyDown (bulletInput) && bulletsShooted < bulletsRound && timer >= delayShootTime) {
 			Bullet bulletToShoot = FindObjectOfType<PoolManager> ().GetBullet ();
 			bulletToShoot.CurrentBulletState = Bullet.BulletState.InScene;
-			bulletToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction);
+			bulletToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction, projectileColor);
 			bulletsShooted++;
 			timer = 0f;
 		}
@@ -63,8 +69,9 @@ public class ShootInput : MonoBehaviour {
 
 		if (Input.GetKeyDown (grenadeInput)) {
 			Grenade grenadeToShoot = FindObjectOfType<PoolManager> ().GetGrenade ();
-			grenadeToShoot.CurrentGrenadeState = Grenade.GrenadeState.InScene;
-			grenadeToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction + Vector3.up);
+            grenadeToShoot.gameObject.GetComponentInChildren<MeshRenderer>().material.color = projectileColor;
+            grenadeToShoot.CurrentGrenadeState = Grenade.GrenadeState.InScene;
+			grenadeToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction + Vector3.up, projectileColor);
 		}
 	}
 }
