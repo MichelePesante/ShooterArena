@@ -10,6 +10,7 @@ public class NewPlayerScript : MonoBehaviour {
     public static bool p1, p2, p3, p4;
 
     public Text player1text, player2text, player3text, player4text;
+    public GameObject p1GO, p2GO, p3GO, p4GO;
 
     // Use this for initialization
     void Start () {
@@ -24,6 +25,8 @@ public class NewPlayerScript : MonoBehaviour {
             numberOfPlayers++;
             p1 = true;
             player1text.enabled = true;
+            p1GO.SetActive(true);
+            p1GO.transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.red;
         }
 
         if (Input.GetKeyDown(KeyCode.Joystick2Button7) && !p2)
@@ -31,6 +34,8 @@ public class NewPlayerScript : MonoBehaviour {
             numberOfPlayers++;
             p2 = true;
             player2text.enabled = true;
+            p2GO.SetActive(true);
+            p2GO.transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
         }
 
         if (Input.GetKeyDown(KeyCode.Joystick3Button7) && !p3)
@@ -38,6 +43,8 @@ public class NewPlayerScript : MonoBehaviour {
             numberOfPlayers++;
             p3 = true;
             player3text.enabled = true;
+            p3GO.SetActive(true);
+            p3GO.transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.green;
         }
 
         if (Input.GetKeyDown(KeyCode.Joystick4Button7) && !p4)
@@ -45,6 +52,8 @@ public class NewPlayerScript : MonoBehaviour {
             numberOfPlayers++;
             p4 = true;
             player4text.enabled = true;
+            p4GO.SetActive(true);
+            p4GO.transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
         }
 
         
