@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour {
-
-	private float movementSpeed;
-	private float jumpSpeed;
-	public Vector3 direction;
-	private bool isJumping;
+    [Header("Public variables")]
+	public float movementSpeed;
+	public float jumpSpeed;
+    [HideInInspector] public Vector3 direction;
+    private bool isJumping;
 
 	private Rigidbody rb;
 	private bool isRotateRight;
@@ -16,14 +16,17 @@ public class PlayerInput : MonoBehaviour {
     private string verticalInput;
     private KeyCode jumpInput;
 
+    [Header("Ground Check")]
     public float sphereRadius;
     public LayerMask whatIsGround;
     public Transform position;
 
-	void Start () {
+    private BoxCollider lastPlatform;
+
+    void Start () {
 		isJumping = false;
 		movementSpeed = 0.2f;
-		jumpSpeed = 20f;
+		jumpSpeed = 22.5f;
 		rb = gameObject.GetComponent<Rigidbody> ();
 		if (!gameObject.GetComponent<Rigidbody> ())
 			rb = gameObject.AddComponent<Rigidbody> ();
@@ -31,12 +34,107 @@ public class PlayerInput : MonoBehaviour {
 		direction = Vector3.right;
 		isRotateRight = true;
 
+        AssignPlayerInput();
+    }
+
+	void Update () {
+        Movement();
+        Jump();
+        Fall();
+
+        rb.WakeUp();
+    }
+
+    /// <summary>
+    /// funzione che controlla con un overlapsphere se si collide con il terreno, resetta isJumping a false
+    /// </summary>
+    void Fall()
+    {
+        Collider[] collidingObjects = Physics.OverlapSphere(position.position, sphereRadius, whatIsGround);
+
+        for (int i = 0; i < collidingObjects.Length; i++)
+        {
+            if (collidingObjects[i].tag == "Ground")
+            {
+                isJumping = false;
+            }
+
+        }
+    }
+
+    //funzione di movento
+    void Movement()
+    {
+        if (Input.GetAxis(horizontalInput) == -1)
+        {
+            direction = Vector3.left;
+            transform.position += direction * movementSpeed;
+            if (isRotateRight)
+            {
+                transform.Rotate(0f, 180f, 0f);
+                isRotateRight = false;
+            }
+        }
+        if (Input.GetAxis(horizontalInput) == 1)
+        {
+            direction = Vector3.right;
+            transform.position += direction * movementSpeed;
+            if (!isRotateRight)
+            {
+                transform.Rotate(0f, -180f, 0f);
+                isRotateRight = true;
+            }
+        }
+    }
+
+    //funzione di jump
+    void Jump()
+    {
+        if (Input.GetKeyDown(jumpInput) && !isJumping)
+        {
+            rb.velocity = Vector3.up * jumpSpeed;
+            isJumping = true;
+
+        }
+
+        if (isJumping)
+        {
+            Physics.IgnoreLayerCollision(8, 9, true);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(8, 9, false);
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            if (Input.GetAxis(verticalInput) <= -0.1f)
+            {
+                lastPlatform = collision.gameObject.GetComponent<BoxCollider>();
+                lastPlatform.enabled = false;
+                rb.velocity = Vector3.down * 5f;
+                Invoke("ReenablePlatforms", 0.3f);
+            }
+        }
+    }
+
+    void ReenablePlatforms()
+    {
+        lastPlatform.enabled = true;
+    }
+
+    //funzione che assegna gli input dei controller a seconda del nome (numero) del player
+    void AssignPlayerInput()
+    {
 
         if (gameObject.name == "Player1")
         {
             horizontalInput = "Horizontal";
             verticalInput = "Vertical";
-            jumpInput = KeyCode.Joystick1Button0; 
+            jumpInput = KeyCode.Joystick1Button0;
         }
         else if (gameObject.name == "Player2")
         {
@@ -58,63 +156,7 @@ public class PlayerInput : MonoBehaviour {
         }
     }
 
-	void Update () {
-
-		if (Input.GetAxis (horizontalInput) == -1) 
-		{
-			direction = Vector3.left;
-			transform.position += direction * movementSpeed;
-			if (isRotateRight) 
-			{
-				transform.Rotate (0f, 180f, 0f);
-				isRotateRight = false;
-			}
-		}
-		if (Input.GetAxis (horizontalInput) == 1) 
-		{
-			direction = Vector3.right;
-			transform.position += direction * movementSpeed;
-			if (!isRotateRight) 
-			{
-				transform.Rotate (0f, -180f, 0f);
-				isRotateRight = true;
-			}
-		}
-		if (Input.GetKeyDown (jumpInput) && !isJumping) 
-		{
-			rb.velocity = Vector3.up * jumpSpeed;
-			isJumping = true;
-		}
-        if (Input.GetAxis (verticalInput) == 1)
-        {
-            Physics.IgnoreLayerCollision(8, 9, true);
-        }
-        else
-        {
-            Physics.IgnoreLayerCollision(8, 9, false);
-        }
-
-        Collider[] collidingObjects = Physics.OverlapSphere(position.position, sphereRadius, whatIsGround);
-
-        for (int i = 0; i < collidingObjects.Length; i++)
-        {
-            if (collidingObjects[i].tag == "Ground")
-            {
-                isJumping = false;
-            }
-        }
-
-        if (isJumping)
-        {
-            Physics.IgnoreLayerCollision(8, 9, true);
-        }
-        else
-        {
-            Physics.IgnoreLayerCollision(8, 9, false);
-        }
-	}
-
-	/*void OnCollisionEnter(Collision _collision) 
+    /*void OnCollisionEnter(Collision _collision) 
 	{
 		if (_collision.gameObject.tag == "Ground" && isJumping) 
 		{
