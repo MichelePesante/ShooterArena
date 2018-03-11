@@ -32,19 +32,14 @@ public class GrenadeExplosion : MonoBehaviour {
         }
 	}
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(25f, 25f, 0f));
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1500f, 1500f, 0f));
+            Vector3 dir = other.transform.position - transform.position;
+            dir.Normalize();
+            other.gameObject.GetComponent<Rigidbody>().AddForce(dir * 75f, ForceMode.Impulse);
+            //other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1500f, 1500f, 0f));
         }
     }
 }
