@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: ecd0294da4b3e9144aeeb4287b4d7ff4
+timeCreated: 1520782302
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Arm.L
+    100002: Arm.R
+    100004: Armature
+    100006: Body
+    100008: body
+    100010: //RootNode
+    100012: Bull_head
+    100014: Cat_head
+    100016: chest
+    100018: Deer_head
+    100020: Goat_head
+    100022: hand.L
+    100024: hand.L_end
+    100026: hand.R
+    100028: hand.R_end
+    100030: handler
+    100032: head
+    100034: head_end
+    100036: leg.L
+    100038: leg.L_end
+    100040: leg.R
+    100042: leg.R_end
+    100044: neck
+    100046: Poncho
+    100048: up_arm.L
+    100050: up_arm.R
+    100052: up_leg.L
+    100054: up_leg.R
+    400000: Arm.L
+    400002: Arm.R
+    400004: Armature
+    400006: Body
+    400008: body
+    400010: //RootNode
+    400012: Bull_head
+    400014: Cat_head
+    400016: chest
+    400018: Deer_head
+    400020: Goat_head
+    400022: hand.L
+    400024: hand.L_end
+    400026: hand.R
+    400028: hand.R_end
+    400030: handler
+    400032: head
+    400034: head_end
+    400036: leg.L
+    400038: leg.L_end
+    400040: leg.R
+    400042: leg.R_end
+    400044: neck
+    400046: Poncho
+    400048: up_arm.L
+    400050: up_arm.R
+    400052: up_leg.L
+    400054: up_leg.R
+    2100000: No Name
+    4300000: Deer_head
+    4300002: Cat_head
+    4300004: Bull_head
+    4300006: Poncho
+    4300008: Body
+    4300010: Goat_head
+    7400000: Armature|Attack
+    7400002: Armature|Falling
+    7400004: Armature|granate
+    7400006: Armature|idle
+    7400008: Armature|Jump
+    7400010: Armature|reset
+    7400012: Armature|run
+    7400014: Armature|run.001
+    7400016: Armature|walk
+    7400018: Armature|walking
+    9500000: //RootNode
+    13700000: Body
+    13700002: Bull_head
+    13700004: Cat_head
+    13700006: Deer_head
+    13700008: Goat_head
+    13700010: Poncho
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
