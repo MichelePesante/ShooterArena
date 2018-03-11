@@ -21,11 +21,11 @@ public class PlayerInput : MonoBehaviour {
     public LayerMask whatIsGround;
     public Transform position;
 
-    private BoxCollider lastPlatform;
-
     private int playerLayer;
 
 	private PlayerManager pm;
+
+    Animator myAnim;
 
     void Start () {
 		isJumping = false;
@@ -38,7 +38,7 @@ public class PlayerInput : MonoBehaviour {
 		direction = Vector3.right;
 		isRotateRight = true;
 		pm = GetComponent<PlayerManager> ();
-
+        myAnim = GetComponentInChildren<Animator>();
         AssignPlayerInput();
     }
 
@@ -62,6 +62,9 @@ public class PlayerInput : MonoBehaviour {
 		IsGroundedCheck();
 
         rb.WakeUp();
+
+
+
     }
 
     /// <summary>
@@ -76,7 +79,8 @@ public class PlayerInput : MonoBehaviour {
             if (collidingObjects[i].tag == "Ground")
             {
                 isJumping = false;
-				pm.PlayerState = PlayerManager.State.IsGrounded;
+                myAnim.SetBool("IsJumping", false);
+                pm.PlayerState = PlayerManager.State.IsGrounded;
             }
 
         }
@@ -85,7 +89,7 @@ public class PlayerInput : MonoBehaviour {
     //funzione di movento
     void Movement()
     {
-        if (Input.GetAxis(horizontalInput) == -1)
+        if (Input.GetAxisRaw(horizontalInput) == -1)
         {
             direction = Vector3.left;
             transform.position += direction * movementSpeed;
@@ -94,8 +98,10 @@ public class PlayerInput : MonoBehaviour {
                 transform.Rotate(0f, 180f, 0f);
                 isRotateRight = false;
             }
+
+            myAnim.SetBool("IsWalking", true);
         }
-        if (Input.GetAxis(horizontalInput) == 1)
+        if (Input.GetAxisRaw(horizontalInput) == 1)
         {
             direction = Vector3.right;
             transform.position += direction * movementSpeed;
@@ -104,7 +110,14 @@ public class PlayerInput : MonoBehaviour {
                 transform.Rotate(0f, -180f, 0f);
                 isRotateRight = true;
             }
+            myAnim.SetBool("IsWalking", true);
         }
+
+       if (Mathf.Abs(Input.GetAxisRaw(horizontalInput)) <= 0.7f)
+       {
+           myAnim.SetBool("IsWalking", false);
+       }
+        Debug.Log(Input.GetAxisRaw(horizontalInput));
     }
 
     //funzione di jump
@@ -114,16 +127,18 @@ public class PlayerInput : MonoBehaviour {
         {
             rb.velocity = Vector3.up * jumpSpeed;
             isJumping = true;
-			pm.PlayerState = PlayerManager.State.IsJumping;
+            myAnim.SetBool("IsJumping", true);
+            pm.PlayerState = PlayerManager.State.IsJumping;
         }
 
         if (isJumping)
         {
-            Physics.IgnoreLayerCollision(playerLayer, 9, true);
+            //Physics.IgnoreLayerCollision(playerLayer, 9, true);
+
         }
         else
         {
-            Physics.IgnoreLayerCollision(playerLayer, 9, false);
+            //Physics.IgnoreLayerCollision(playerLayer, 9, false);
         }
     }
 
@@ -138,10 +153,6 @@ public class PlayerInput : MonoBehaviour {
         }
     }
 
-    void ReenableCollisions()
-    {
-        Physics.IgnoreLayerCollision(playerLayer, 9, false);
-    }
 
     //funzione che assegna gli input dei controller a seconda del nome (numero) del player
     void AssignPlayerInput()

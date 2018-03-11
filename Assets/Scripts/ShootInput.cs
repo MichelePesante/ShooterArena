@@ -18,8 +18,12 @@ public class ShootInput : MonoBehaviour {
 
     private Color projectileColor;
 
+    Animator myAnim;
+
     private void Start()
     {
+        myAnim = transform.parent.GetChild(0).GetComponent<Animator>();
+
 		bulletsRound = 5;
 		bulletsShooted = 0;
 		timer = 0.7f;
@@ -63,7 +67,13 @@ public class ShootInput : MonoBehaviour {
 			bulletToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction, projectileColor);
 			bulletsShooted++;
 			timer = 0f;
+
+            myAnim.SetBool("IsAttacking", true);
 		}
+        else
+        {
+            myAnim.SetBool("IsAttacking", false);
+        }
 
 		if (bulletsShooted >= 5 && timer >= bulletReloadTime) {
 			bulletsShooted = 0;
