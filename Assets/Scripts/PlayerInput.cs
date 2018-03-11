@@ -16,6 +16,10 @@ public class PlayerInput : MonoBehaviour {
     private string verticalInput;
     private KeyCode jumpInput;
 
+    public float sphereRadius;
+    public LayerMask whatIsGround;
+    public Transform position;
+
 	void Start () {
 		isJumping = false;
 		movementSpeed = 0.2f;
@@ -89,13 +93,32 @@ public class PlayerInput : MonoBehaviour {
         {
             Physics.IgnoreLayerCollision(8, 9, false);
         }
+
+        Collider[] collidingObjects = Physics.OverlapSphere(position.position, sphereRadius, whatIsGround);
+
+        for (int i = 0; i < collidingObjects.Length; i++)
+        {
+            if (collidingObjects[i].tag == "Ground")
+            {
+                isJumping = false;
+            }
+        }
+
+        if (isJumping)
+        {
+            Physics.IgnoreLayerCollision(8, 9, true);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(8, 9, false);
+        }
 	}
 
-	void OnCollisionEnter(Collision _collision) 
+	/*void OnCollisionEnter(Collision _collision) 
 	{
 		if (_collision.gameObject.tag == "Ground" && isJumping) 
 		{
 			isJumping = false;
 		}
-	}
+	}*/
 }
