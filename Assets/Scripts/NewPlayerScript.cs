@@ -11,7 +11,7 @@ public class NewPlayerScript : MonoBehaviour {
 
     public static int p1HeadModel, p2HeadModel, p3HeadModel, p4HeadModel;
 
-    public Text player1text, player2text, player3text, player4text;
+    public GameObject player1text, player2text, player3text, player4text;
     public GameObject p1GO, p2GO, p3GO, p4GO;
 
     // Use this for initialization
@@ -26,7 +26,7 @@ public class NewPlayerScript : MonoBehaviour {
         {
             numberOfPlayers++;
             p1 = true;
-            player1text.enabled = true;
+            player1text.SetActive(true);
             p1GO.SetActive(true);
             p1GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
         }
@@ -35,7 +35,7 @@ public class NewPlayerScript : MonoBehaviour {
         {
             numberOfPlayers++;
             p2 = true;
-            player2text.enabled = true;
+            player2text.SetActive(true);
             p2GO.SetActive(true);
             p2GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
         }
@@ -44,7 +44,7 @@ public class NewPlayerScript : MonoBehaviour {
         {
             numberOfPlayers++;
             p3 = true;
-            player3text.enabled = true;
+            player3text.SetActive(true);
             p3GO.SetActive(true);
             p3GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
         }
@@ -53,7 +53,7 @@ public class NewPlayerScript : MonoBehaviour {
         {
             numberOfPlayers++;
             p4 = true;
-            player4text.enabled = true;
+            player4text.SetActive(true);
             p4GO.SetActive(true);
             p4GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
         }
