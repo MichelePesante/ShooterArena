@@ -6,7 +6,7 @@ public class PlayerModelChoose : MonoBehaviour {
 
     List<SkinnedMeshRenderer> headModels = new List<SkinnedMeshRenderer>();
 
-    KeyCode leftRB, rightRB;
+    KeyCode leftRB, rightRB, aButton;
 
     int i;
     // Use this for initialization
@@ -66,21 +66,25 @@ public class PlayerModelChoose : MonoBehaviour {
         {
             leftRB = KeyCode.Joystick1Button4;
             rightRB = KeyCode.Joystick1Button5;
+            aButton = KeyCode.Joystick1Button0;
         }
         else if (gameObject.name == "PlayerPick2")
         {
             leftRB = KeyCode.Joystick2Button4;
             rightRB = KeyCode.Joystick2Button5;
+            aButton = KeyCode.Joystick2Button0;
         }
         else if (gameObject.name == "PlayerPick3")
         {
             leftRB = KeyCode.Joystick3Button4;
             rightRB = KeyCode.Joystick3Button5;
+            aButton = KeyCode.Joystick3Button0;
         }
         else if (gameObject.name == "PlayerPick4")
         {
             leftRB = KeyCode.Joystick4Button4;
             rightRB = KeyCode.Joystick4Button5;
+            aButton = KeyCode.Joystick4Button0;
         }
     }
 

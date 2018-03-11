@@ -11,7 +11,7 @@ public class NewPlayerScript : MonoBehaviour {
 
     public static int p1HeadModel, p2HeadModel, p3HeadModel, p4HeadModel;
 
-    public GameObject player1text, player2text, player3text, player4text;
+    public Text player1text, player2text, player3text, player4text;
     public GameObject p1GO, p2GO, p3GO, p4GO;
 
     // Use this for initialization
@@ -22,43 +22,63 @@ public class NewPlayerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if (Input.GetKeyDown(KeyCode.Joystick1Button7) && !p1)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && !p1)
         {
             numberOfPlayers++;
-            p1 = true;
-            player1text.SetActive(true);
+            player1text.gameObject.SetActive(true);
+            player1text.color = Color.red;
             p1GO.SetActive(true);
             p1GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
+            p1 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && p1)
+        {
+            player1text.color = Color.green;
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick2Button7) && !p2)
+        if (Input.GetKeyDown(KeyCode.Joystick2Button0) && !p2)
         {
             numberOfPlayers++;
-            p2 = true;
-            player2text.SetActive(true);
+            player2text.gameObject.SetActive(true);
+            player2text.color = Color.red;
             p2GO.SetActive(true);
             p2GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
+            p2 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick2Button0) && p2)
+        {
+            player2text.color = Color.green;
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick3Button7) && !p3)
+        if (Input.GetKeyDown(KeyCode.Joystick3Button0) && !p3)
         {
             numberOfPlayers++;
-            p3 = true;
-            player3text.SetActive(true);
+            player3text.gameObject.SetActive(true);
+            player3text.color = Color.red;
             p3GO.SetActive(true);
             p3GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+            p3 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick3Button0) && p3)
+        {
+            player3text.color = Color.green;
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick4Button7) && !p4)
+        if (Input.GetKeyDown(KeyCode.Joystick4Button0) && !p4)
         {
             numberOfPlayers++;
-            p4 = true;
-            player4text.SetActive(true);
+            player4text.gameObject.SetActive(true);
+            player4text.color = Color.red;
             p4GO.SetActive(true);
             p4GO.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            p4 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick4Button0) && p4)
+        {
+            player4text.color = Color.green;
         }
 
-        
+
         Debug.Log(numberOfPlayers);
     }
 }

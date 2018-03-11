@@ -44,17 +44,17 @@ public class PlayerInput : MonoBehaviour {
 
 	void Update () {
 		switch (pm.PlayerState) {
-		case pm.State.IsGrounded:
+		case PlayerManager.State.IsGrounded:
 			Jump ();
 				break;
-		case pm.State.IsJumping:
+		case PlayerManager.State.IsJumping:
 				break;
-		case pm.State.IsFalling:
+		case PlayerManager.State.IsFalling:
 			Jump ();
 				break;
-		case pm.State.IsPenetrating:
+		case PlayerManager.State.IsPenetrating:
 				break;
-		case pm.State.IsFalling:
+		case PlayerManager.State.IsDead:
 				break;
 		default:
 				break;
@@ -115,7 +115,7 @@ public class PlayerInput : MonoBehaviour {
         {
             rb.velocity = Vector3.up * jumpSpeed;
             isJumping = true;
-			pm.PlayerState = pm.State.IsJumping;
+			pm.PlayerState = PlayerManager.State.IsJumping;
         }
 
         if (isJumping)
@@ -134,17 +134,14 @@ public class PlayerInput : MonoBehaviour {
         {
             if (Input.GetAxis(verticalInput) == -1)
             {
-                GetComponent<BoxCollider>().enabled = false;
-                rb.velocity = Vector3.down * 5f;
-                Invoke("ReenablePlatforms", 0.2f);
 				isJumping = true;
             }
         }
     }
 
-    void ReenablePlatforms()
+    void ReenableCollisions()
     {
-        GetComponent<BoxCollider>().enabled = true;
+        Physics.IgnoreLayerCollision(playerLayer, 9, false);
     }
 
     //funzione che assegna gli input dei controller a seconda del nome (numero) del player

@@ -979,7 +979,7 @@ MonoBehaviour:
   movementSpeed: 0
   jumpSpeed: 0
   direction: {x: 0, y: 0, z: 0}
-  sphereRadius: 0.3
+  sphereRadius: 0.1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512
@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640dab8b66f889b4086bb37d4dd9a5d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerState: 0
 --- !u!137 &137101513394046712
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
