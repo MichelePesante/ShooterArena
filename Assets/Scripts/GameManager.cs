@@ -13,37 +13,30 @@ public class GameManager : MonoBehaviour {
         {
             GameObject playerInstantation1 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation1.name = "Player1";
-            playerInstantation1.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.red;
-            playerInstantation1.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
-            playerInstantation1.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-            playerInstantation1.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation1.transform.GetChild(0).transform.GetChild(4).GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
+            playerInstantation1.transform.GetChild(0).transform.GetChild(NewPlayerScript.p1HeadModel).GetComponent<SkinnedMeshRenderer>().enabled = true;
+
         }
         if (NewPlayerScript.p2 == true)
         {
             GameObject playerInstantation2 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation2.name = "Player2";
-            playerInstantation2.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.green;
-            playerInstantation2.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-            playerInstantation2.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
-            playerInstantation2.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation2.transform.GetChild(0).transform.GetChild(4).GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.blue;
+            playerInstantation2.transform.GetChild(0).transform.GetChild(NewPlayerScript.p2HeadModel).GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
         if (NewPlayerScript.p3 == true)
         {
             GameObject playerInstantation3 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation3.name = "Player3";
-            playerInstantation3.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
-            playerInstantation3.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-            playerInstantation3.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-            playerInstantation3.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = true;
+            playerInstantation3.transform.GetChild(0).transform.GetChild(4).GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.green;
+            playerInstantation3.transform.GetChild(0).transform.GetChild(NewPlayerScript.p3HeadModel).GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
         if (NewPlayerScript.p4 == true)
         {
             GameObject playerInstantation4 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation4.name = "Player4";
-            playerInstantation4.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
-            playerInstantation4.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-            playerInstantation4.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-            playerInstantation4.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation4.transform.GetChild(0).transform.GetChild(4).GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.yellow;
+            playerInstantation4.transform.GetChild(0).transform.GetChild(NewPlayerScript.p4HeadModel).GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
 
         /*for (int i = 0; i < NewPlayerScript.numberOfPlayers; i++)
