@@ -7,8 +7,11 @@ public class ShootInput : MonoBehaviour {
 	private int bulletsRound;
 	private int bulletsShooted;
 	private float timer;
-	private float reloadTime;
+	private float bulletReloadTime;
 	private float delayShootTime;
+
+    public float grenadeTimer;
+    public int grenades;
 
     public KeyCode bulletInput;
     public KeyCode grenadeInput;
@@ -20,7 +23,7 @@ public class ShootInput : MonoBehaviour {
 		bulletsRound = 5;
 		bulletsShooted = 0;
 		timer = 0.7f;
-		reloadTime = 2f;
+		bulletReloadTime = 2f;
 		delayShootTime = 0.7f;
 
         if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player1")
@@ -62,17 +65,29 @@ public class ShootInput : MonoBehaviour {
 			timer = 0f;
 		}
 
-		if (bulletsShooted >= 5 && timer >= reloadTime) {
+		if (bulletsShooted >= 5 && timer >= bulletReloadTime) {
 			bulletsShooted = 0;
 			timer = 0.7f;
 		}
 
-		if (Input.GetKeyDown (grenadeInput)) {
+		if (Input.GetKeyDown (grenadeInput) && grenades > 0) {
 			Grenade grenadeToShoot = FindObjectOfType<PoolManager> ().GetGrenade ();
             grenadeToShoot.gameObject.GetComponentInChildren<MeshRenderer>().material.color = projectileColor;
             grenadeToShoot.CurrentGrenadeState = Grenade.GrenadeState.InScene;
 			grenadeToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction + Vector3.up, projectileColor);
+            grenades--;
 		}
+
+        if (grenades <= 0)
+        {
+            grenadeTimer += Time.deltaTime;
+            if (grenadeTimer >= 5f)
+            {
+                grenades++;
+                grenadeTimer = 0f;
+            }
+        }
+
 	}
 }
 

@@ -548,6 +548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ea0abbafbaf44b5ae427e2bf613fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grenadeTimer: 0
+  grenades: 1
   bulletInput: 0
   grenadeInput: 0
 --- !u!114 &114421468564150312

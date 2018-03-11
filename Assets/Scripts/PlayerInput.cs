@@ -113,7 +113,7 @@ public class PlayerInput : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Ground")
         {
-            if (Input.GetAxis(verticalInput) <= -0.1f)
+            if (Input.GetAxis(verticalInput) == -1)
             {
                 GetComponent<BoxCollider>().enabled = false;
                 rb.velocity = Vector3.down * 5f;
