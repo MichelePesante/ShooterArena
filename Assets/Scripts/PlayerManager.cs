@@ -6,9 +6,12 @@ public class PlayerManager : MonoBehaviour {
 
     Vector3 startPos;
 
+	public State PlayerState;
+
 	// Use this for initialization
 	void Start () {
         startPos = transform.position;
+		PlayerState = State.OnGround;
 	}
 	
 	// Update is called once per frame
@@ -34,4 +37,13 @@ public class PlayerManager : MonoBehaviour {
         transform.position = startPos;
         gameObject.SetActive(true);
     }
+
+	public enum State 
+	{
+		IsGrounded = 0,
+		IsJumping = 1,
+		IsFalling = 2,
+		IsPenetrating = 3,
+		IsDead = 4
+	}
 }
