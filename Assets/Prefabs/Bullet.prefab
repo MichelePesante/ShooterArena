@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4789282298398700}
   - component: {fileID: 33671904903170350}
-  - component: {fileID: 135539207372401524}
   - component: {fileID: 23551471296379686}
   m_Layer: 10
   m_Name: Graphic
@@ -137,16 +136,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.09
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135539207372401524
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1962879343926342}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

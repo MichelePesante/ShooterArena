@@ -28,25 +28,25 @@ public class PlayerInput : MonoBehaviour {
 		isRotateRight = true;
 
 
-        if (gameObject.name == "Player0")
+        if (gameObject.name == "Player1")
         {
             horizontalInput = "Horizontal";
             verticalInput = "Vertical";
             jumpInput = KeyCode.Joystick1Button0; 
         }
-        else if (gameObject.name == "Player1")
+        else if (gameObject.name == "Player2")
         {
             horizontalInput = "Horizontal2";
             verticalInput = "Vertical2";
             jumpInput = KeyCode.Joystick2Button0;
         }
-        else if (gameObject.name == "Player2")
+        else if (gameObject.name == "Player3")
         {
             horizontalInput = "Horizontal3";
             verticalInput = "Vertical3";
             jumpInput = KeyCode.Joystick3Button0;
         }
-        else if (gameObject.name == "Player3")
+        else if (gameObject.name == "Player4")
         {
             horizontalInput = "Horizontal4";
             verticalInput = "Vertical4";

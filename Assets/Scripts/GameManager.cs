@@ -9,7 +9,44 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        for (int i = 0; i < PlayerManager.numberOfPlayers; i++)
+        if (NewPlayerScript.p1 == true)
+        {
+            GameObject playerInstantation1 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
+            playerInstantation1.name = "Player1";
+            playerInstantation1.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+            playerInstantation1.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+            playerInstantation1.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation1.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (NewPlayerScript.p2 == true)
+        {
+            GameObject playerInstantation2 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
+            playerInstantation2.name = "Player2";
+            playerInstantation2.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+            playerInstantation2.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation2.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
+            playerInstantation2.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (NewPlayerScript.p3 == true)
+        {
+            GameObject playerInstantation3 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
+            playerInstantation3.name = "Player3";
+            playerInstantation3.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
+            playerInstantation3.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation3.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation3.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = true;
+        }
+        if (NewPlayerScript.p4 == true)
+        {
+            GameObject playerInstantation4 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
+            playerInstantation4.name = "Player4";
+            playerInstantation4.transform.GetChild(0).transform.GetChild(3).GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+            playerInstantation4.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation4.transform.GetChild(0).transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+            playerInstantation4.transform.GetChild(0).transform.GetChild(2).GetComponent<MeshRenderer>().enabled = false;
+        }
+
+        /*for (int i = 0; i < NewPlayerScript.numberOfPlayers; i++)
         {
             switch (i)
             {
@@ -34,7 +71,7 @@ public class GameManager : MonoBehaviour {
                     playerInstantation4.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
                     break;
             }
-        }
+        }*/
     }
 
 

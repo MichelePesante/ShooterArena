@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour {
 
     public void LoadLevel(string name)
     {
-        if (PlayerManager.numberOfPlayers > 0)
+        if (NewPlayerScript.numberOfPlayers > 0)
         {
             SceneManager.LoadScene(name);
         }

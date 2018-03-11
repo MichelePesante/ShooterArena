@@ -31,10 +31,15 @@ public class Bullet : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
     {
-		if (other.tag == "Player") {
-			other.GetComponent<Rigidbody>().velocity = direction * bulletForce;
-		}
-		CurrentBulletState = BulletState.InPool;
+        if (other.tag == "Player")
+        {
+            other.GetComponent<Rigidbody>().velocity = direction * bulletForce;
+        }
+
+
+        CurrentBulletState = BulletState.InPool;
+
+
     }
 
     public enum BulletState {

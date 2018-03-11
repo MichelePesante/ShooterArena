@@ -23,25 +23,25 @@ public class ShootInput : MonoBehaviour {
 		reloadTime = 2f;
 		delayShootTime = 0.7f;
 
-        if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player0")
+        if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player1")
         {
             bulletInput = KeyCode.Joystick1Button2;
             grenadeInput = KeyCode.Joystick1Button1;
             projectileColor = Color.red;
         }
-        else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player1")
+        else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player2")
         {
             bulletInput = KeyCode.Joystick2Button2;
             grenadeInput = KeyCode.Joystick2Button1;
             projectileColor = Color.green;
         }
-        else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player2")
+        else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player3")
         {
             bulletInput = KeyCode.Joystick3Button2;
             grenadeInput = KeyCode.Joystick3Button1;
             projectileColor = Color.yellow;
         }
-        else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player3")
+        else if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player4")
         {
             bulletInput = KeyCode.Joystick4Button2;
             grenadeInput = KeyCode.Joystick4Button1;
