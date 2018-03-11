@@ -43,7 +43,6 @@ public class PlayerManager : MonoBehaviour {
 		IsGrounded = 0,
 		IsJumping = 1,
 		IsFalling = 2,
-		IsPenetrating = 3,
-		IsDead = 4
+		IsDead = 3
 	}
 }
