@@ -118,6 +118,7 @@ public class PlayerInput : MonoBehaviour {
                 GetComponent<BoxCollider>().enabled = false;
                 rb.velocity = Vector3.down * 5f;
                 Invoke("ReenablePlatforms", 0.2f);
+				isJumping = true;
             }
         }
     }
