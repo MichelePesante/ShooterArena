@@ -5,7 +5,7 @@ using UnityEngine;
 public class GrenadeExplosion : MonoBehaviour {
 
     float timer;
-    float explosionForce = 1f;
+    float explosionForce = 1.7f;
 	// Use this for initialization
 	void Start () {
 		
