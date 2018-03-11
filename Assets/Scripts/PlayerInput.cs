@@ -52,8 +52,6 @@ public class PlayerInput : MonoBehaviour {
 		case PlayerManager.State.IsFalling:
 			Jump ();
 				break;
-		case PlayerManager.State.IsPenetrating:
-				break;
 		case PlayerManager.State.IsDead:
 				break;
 		default:
@@ -61,7 +59,7 @@ public class PlayerInput : MonoBehaviour {
 		}
 		Jump ();
         Movement();
-        Fall();
+		IsGroundedCheck();
 
         rb.WakeUp();
     }
@@ -69,7 +67,7 @@ public class PlayerInput : MonoBehaviour {
     /// <summary>
     /// funzione che controlla con un overlapsphere se si collide con il terreno, resetta isJumping a false
     /// </summary>
-    void Fall()
+    void IsGroundedCheck()
     {
         Collider[] collidingObjects = Physics.OverlapSphere(position.position, sphereRadius, whatIsGround);
 
@@ -78,6 +76,7 @@ public class PlayerInput : MonoBehaviour {
             if (collidingObjects[i].tag == "Ground")
             {
                 isJumping = false;
+				pm.PlayerState = PlayerManager.State.IsGrounded;
             }
 
         }
