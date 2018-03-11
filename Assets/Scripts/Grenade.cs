@@ -68,6 +68,7 @@ public class Grenade : MonoBehaviour {
     public void Explode()
     {
         transform.localScale += new Vector3(explosionForce, explosionForce, explosionForce);
+		GetComponentInChildren<GrenadeExplosion> ().Explode ();
     }
     public void ReduceExplosionRadius()
     {
