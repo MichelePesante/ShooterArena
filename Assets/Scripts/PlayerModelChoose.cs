@@ -8,6 +8,8 @@ public class PlayerModelChoose : MonoBehaviour {
 
     KeyCode leftRB, rightRB, aButton;
 
+    public bool ready;
+
     int i;
     // Use this for initialization
     void Start () {
