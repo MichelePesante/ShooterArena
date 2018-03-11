@@ -23,6 +23,8 @@ public class PlayerInput : MonoBehaviour {
 
     private BoxCollider lastPlatform;
 
+    private int playerLayer;
+
     void Start () {
 		isJumping = false;
 		movementSpeed = 0.2f;
@@ -99,11 +101,11 @@ public class PlayerInput : MonoBehaviour {
 
         if (isJumping)
         {
-            Physics.IgnoreLayerCollision(8, 9, true);
+            Physics.IgnoreLayerCollision(playerLayer, 9, true);
         }
         else
         {
-            Physics.IgnoreLayerCollision(8, 9, false);
+            Physics.IgnoreLayerCollision(playerLayer, 9, false);
         }
     }
 
@@ -113,17 +115,16 @@ public class PlayerInput : MonoBehaviour {
         {
             if (Input.GetAxis(verticalInput) <= -0.1f)
             {
-                lastPlatform = collision.gameObject.GetComponent<BoxCollider>();
-                lastPlatform.enabled = false;
+                GetComponent<BoxCollider>().enabled = false;
                 rb.velocity = Vector3.down * 5f;
-                Invoke("ReenablePlatforms", 0.3f);
+                Invoke("ReenablePlatforms", 0.2f);
             }
         }
     }
 
     void ReenablePlatforms()
     {
-        lastPlatform.enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     //funzione che assegna gli input dei controller a seconda del nome (numero) del player
@@ -135,24 +136,32 @@ public class PlayerInput : MonoBehaviour {
             horizontalInput = "Horizontal";
             verticalInput = "Vertical";
             jumpInput = KeyCode.Joystick1Button0;
+            playerLayer = 12;
+            gameObject.layer = playerLayer;
         }
         else if (gameObject.name == "Player2")
         {
             horizontalInput = "Horizontal2";
             verticalInput = "Vertical2";
             jumpInput = KeyCode.Joystick2Button0;
+            playerLayer = 13;
+            gameObject.layer = playerLayer;
         }
         else if (gameObject.name == "Player3")
         {
             horizontalInput = "Horizontal3";
             verticalInput = "Vertical3";
             jumpInput = KeyCode.Joystick3Button0;
+            playerLayer = 14;
+            gameObject.layer = playerLayer;
         }
         else if (gameObject.name == "Player4")
         {
             horizontalInput = "Horizontal4";
             verticalInput = "Vertical4";
             jumpInput = KeyCode.Joystick4Button0;
+            playerLayer = 15;
+            gameObject.layer = playerLayer;
         }
     }
 

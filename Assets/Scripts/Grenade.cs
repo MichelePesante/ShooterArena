@@ -9,6 +9,7 @@ public class Grenade : MonoBehaviour {
 	private Vector3 direction;
 	private Rigidbody rb;
 	private float explosionForce;
+    private float enlargment;
 	private float timer;
 
 	public GrenadeState CurrentGrenadeState;
@@ -20,7 +21,8 @@ public class Grenade : MonoBehaviour {
 			rb = gameObject.AddComponent<Rigidbody> ();
 		rb.freezeRotation = true;
 		grenadeSpeed = 15f;
-		explosionForce = 12f;
+        enlargment = 0.01f;
+		explosionForce = 0.025f;
 		hasBeenShooted = false;
 		timer = 0f;
 	}
@@ -35,14 +37,18 @@ public class Grenade : MonoBehaviour {
 		if (CurrentGrenadeState == GrenadeState.InScene) 
 		{
 			timer += Time.deltaTime;
-			if (hasBeenShooted == false) {
+
+            transform.localScale += new Vector3(enlargment, enlargment, enlargment);
+
+            if (hasBeenShooted == false) {
 				rb.velocity = direction * grenadeSpeed;
 				hasBeenShooted = true;
 			}
+
 			if (timer >= 1.5f) {
 				Explode ();
-				CurrentGrenadeState = GrenadeState.InPool;
-				timer = 0f;
+                CurrentGrenadeState = GrenadeState.InPool;
+                timer = 0f;
 			}
 		} 
 	}
@@ -59,7 +65,15 @@ public class Grenade : MonoBehaviour {
         gameObject.GetComponentInChildren<MeshRenderer>().material.color = _color;
     }
 
-	public void Explode()
+    public void Explode()
+    {
+        transform.localScale += new Vector3(explosionForce, explosionForce, explosionForce);
+    }
+    public void ReduceExplosionRadius()
+    {
+        transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+	/*public void Explode()
 	{
 		for (int i = 0; i < transform.childCount; i++) 
 		{	
@@ -78,5 +92,5 @@ public class Grenade : MonoBehaviour {
 			if (transform.GetChild (i).name == "Graphic")
 				transform.GetChild (i).GetComponent<MeshRenderer> ().enabled = true;
 		}
-	}
+	}*/
 }
