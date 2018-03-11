@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if (NewPlayerScript.p1 == true)
+        if (NewPlayerScript.P1Join == true)
         {
             GameObject playerInstantation1 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation1.name = "Player1";
@@ -17,21 +17,21 @@ public class GameManager : MonoBehaviour {
             playerInstantation1.transform.GetChild(0).transform.GetChild(NewPlayerScript.p1HeadModel).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
         }
-        if (NewPlayerScript.p2 == true)
+        if (NewPlayerScript.P2Join == true)
         {
             GameObject playerInstantation2 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation2.name = "Player2";
             playerInstantation2.transform.GetChild(0).transform.GetChild(4).GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.blue;
             playerInstantation2.transform.GetChild(0).transform.GetChild(NewPlayerScript.p2HeadModel).GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
-        if (NewPlayerScript.p3 == true)
+        if (NewPlayerScript.P3Join == true)
         {
             GameObject playerInstantation3 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation3.name = "Player3";
             playerInstantation3.transform.GetChild(0).transform.GetChild(4).GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.green;
             playerInstantation3.transform.GetChild(0).transform.GetChild(NewPlayerScript.p3HeadModel).GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
-        if (NewPlayerScript.p4 == true)
+        if (NewPlayerScript.P4Join == true)
         {
             GameObject playerInstantation4 = Instantiate(playerPrefab, new Vector3(15f, 5f, 0f), Quaternion.identity);
             playerInstantation4.name = "Player4";
