@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         startPos = transform.position;
-		PlayerState = State.OnGround;
+		PlayerState = State.IsGrounded;
 	}
 	
 	// Update is called once per frame

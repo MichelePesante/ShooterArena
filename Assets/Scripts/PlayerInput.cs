@@ -25,7 +25,7 @@ public class PlayerInput : MonoBehaviour {
 
     private int playerLayer;
 
-	private PlayerManager PM;
+	private PlayerManager pm;
 
     void Start () {
 		isJumping = false;
@@ -37,28 +37,29 @@ public class PlayerInput : MonoBehaviour {
 		rb.freezeRotation = true;
 		direction = Vector3.right;
 		isRotateRight = true;
-		PM = GetComponent<PlayerManager> ();
+		pm = GetComponent<PlayerManager> ();
 
         AssignPlayerInput();
     }
 
 	void Update () {
-		switch (PM.PlayerState) {
-		case PM.State.IsDead:
-				break;
-		case PM.State.IsFalling:
+		switch (pm.PlayerState) {
+		case pm.State.IsGrounded:
 			Jump ();
 				break;
-		case PM.State.IsGrounded:
+		case pm.State.IsJumping:
+				break;
+		case pm.State.IsFalling:
 			Jump ();
 				break;
-		case PM.State.IsJumping:
+		case pm.State.IsPenetrating:
 				break;
-		case PM.State.IsPenetrating:
+		case pm.State.IsFalling:
 				break;
 		default:
 				break;
 		}
+		Jump ();
         Movement();
         Fall();
 
@@ -114,7 +115,7 @@ public class PlayerInput : MonoBehaviour {
         {
             rb.velocity = Vector3.up * jumpSpeed;
             isJumping = true;
-			PM.PlayerState = PM.State.IsJumping;
+			pm.PlayerState = pm.State.IsJumping;
         }
 
         if (isJumping)
