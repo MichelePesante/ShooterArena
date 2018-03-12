@@ -21,6 +21,7 @@ public class PlayerInput : MonoBehaviour {
     public LayerMask whatIsGround;
     public Transform position;
 
+
     private int playerLayer;
 
 	private PlayerManager pm;
@@ -39,24 +40,25 @@ public class PlayerInput : MonoBehaviour {
 		isRotateRight = true;
 		pm = GetComponent<PlayerManager> ();
         myAnim = GetComponentInChildren<Animator>();
+
         AssignPlayerInput();
     }
 
 	void Update () {
-		switch (pm.PlayerState) {
-		case PlayerManager.State.IsGrounded:
-			Jump ();
-				break;
-		case PlayerManager.State.IsJumping:
-				break;
-		case PlayerManager.State.IsFalling:
-			Jump ();
-				break;
-		case PlayerManager.State.IsDead:
-				break;
-		default:
-				break;
-		}
+	//	switch (pm.PlayerState) {
+	//	case PlayerManager.State.IsGrounded:
+	//		Jump ();
+	//			break;
+	//	case PlayerManager.State.IsJumping:
+	//			break;
+	//	case PlayerManager.State.IsFalling:
+	//		Jump ();
+	//			break;
+	//	case PlayerManager.State.IsDead:
+	//			break;
+	//	default:
+	//			break;
+	//	}
 		Jump ();
         Movement();
 		IsGroundedCheck();
@@ -80,7 +82,6 @@ public class PlayerInput : MonoBehaviour {
             {
                 isJumping = false;
                 myAnim.SetBool("IsJumping", false);
-                pm.PlayerState = PlayerManager.State.IsGrounded;
             }
 
         }
@@ -117,7 +118,6 @@ public class PlayerInput : MonoBehaviour {
        {
            myAnim.SetBool("IsWalking", false);
        }
-        Debug.Log(Input.GetAxisRaw(horizontalInput));
     }
 
     //funzione di jump
@@ -128,18 +128,17 @@ public class PlayerInput : MonoBehaviour {
             rb.velocity = Vector3.up * jumpSpeed;
             isJumping = true;
             myAnim.SetBool("IsJumping", true);
-            pm.PlayerState = PlayerManager.State.IsJumping;
         }
 
-        if (isJumping)
-        {
-            //Physics.IgnoreLayerCollision(playerLayer, 9, true);
-
-        }
-        else
-        {
-            //Physics.IgnoreLayerCollision(playerLayer, 9, false);
-        }
+    //   if (isJumping)
+    //   {
+    //       Physics.IgnoreLayerCollision(playerLayer, 9, true);
+    //
+    //   }
+    //   else
+    //   {
+    //       Physics.IgnoreLayerCollision(playerLayer, 9, false);
+    //    }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -148,11 +147,17 @@ public class PlayerInput : MonoBehaviour {
         {
             if (Input.GetAxis(verticalInput) == -1)
             {
+                GetComponent<BoxCollider>().enabled = false;
+                Invoke("ReenableCollider", 0.25f);
 				isJumping = true;
             }
         }
     }
 
+    void ReenableCollider()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+    }
 
     //funzione che assegna gli input dei controller a seconda del nome (numero) del player
     void AssignPlayerInput()

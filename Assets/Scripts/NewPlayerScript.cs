@@ -100,14 +100,11 @@ public class NewPlayerScript : MonoBehaviour {
         
         if (i == numberOfPlayers && numberOfPlayers != 0)
         {
-            
             SceneManager.LoadScene("MainScene");
         }
         else
         {
             i = 0;
         }
-
-        Debug.Log(i);
     }
 }

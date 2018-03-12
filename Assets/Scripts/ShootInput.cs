@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ShootInput : MonoBehaviour {
 
-	private int bulletsRound;
-	private int bulletsShooted;
-	private float timer;
-	private float bulletReloadTime;
-	private float delayShootTime;
 
-    public float grenadeTimer;
+    public int availableBullets;
+    public float bulletShootDelay;
+    public float bulletReloadTime;
+    float bulletTimer;
+    float grenadeTimer;
+
+
+    public float grenadeReloadTime;
     public int grenades;
 
     public KeyCode bulletInput;
@@ -23,12 +25,6 @@ public class ShootInput : MonoBehaviour {
     private void Start()
     {
         myAnim = transform.parent.GetChild(0).GetComponent<Animator>();
-
-		bulletsRound = 5;
-		bulletsShooted = 0;
-		timer = 0.7f;
-		bulletReloadTime = 2f;
-		delayShootTime = 0.7f;
 
         if (gameObject.GetComponentInParent<PlayerInput>().gameObject.name == "Player1")
         {
@@ -59,14 +55,15 @@ public class ShootInput : MonoBehaviour {
 
 
     void Update() {
-		timer += Time.deltaTime;
-
-		if (Input.GetKeyDown (bulletInput) && bulletsShooted < bulletsRound && timer >= delayShootTime) {
+		bulletTimer += Time.deltaTime;
+        grenadeTimer += Time.deltaTime;
+        
+		if (Input.GetKeyDown (bulletInput) && availableBullets != 0 && bulletTimer >= bulletShootDelay) {
 			Bullet bulletToShoot = FindObjectOfType<PoolManager> ().GetBullet ();
 			bulletToShoot.CurrentBulletState = Bullet.BulletState.InScene;
 			bulletToShoot.ShootStartPosition (transform.position, gameObject.GetComponentInParent<PlayerInput>().direction, projectileColor);
-			bulletsShooted++;
-			timer = 0f;
+            availableBullets--;
+			bulletTimer = 0f;
 
             myAnim.SetBool("IsAttacking", true);
 		}
@@ -75,12 +72,13 @@ public class ShootInput : MonoBehaviour {
             myAnim.SetBool("IsAttacking", false);
         }
 
-		if (bulletsShooted >= 5 && timer >= bulletReloadTime) {
-			bulletsShooted = 0;
-			timer = 0.7f;
-		}
+        if (availableBullets <= 0 && bulletTimer >= bulletReloadTime)
+        {
+            availableBullets = 7;
+            bulletTimer = 0f;
+        }
 
-		if (Input.GetKeyDown (grenadeInput) && grenades > 0) {
+		if (Input.GetKeyDown (grenadeInput) && grenades >= 0) {
 			Grenade grenadeToShoot = FindObjectOfType<PoolManager> ().GetGrenade ();
             grenadeToShoot.gameObject.GetComponentInChildren<MeshRenderer>().material.color = projectileColor;
             grenadeToShoot.CurrentGrenadeState = Grenade.GrenadeState.InScene;
@@ -90,8 +88,7 @@ public class ShootInput : MonoBehaviour {
 
         if (grenades <= 0)
         {
-            grenadeTimer += Time.deltaTime;
-            if (grenadeTimer >= 5f)
+            if (grenadeTimer >= grenadeReloadTime)
             {
                 grenades++;
                 grenadeTimer = 0f;

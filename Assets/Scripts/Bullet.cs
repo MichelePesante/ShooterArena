@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-	private float bulletSpeed;
+	public float bulletSpeed;
 	private Vector3 direction;
-	private float bulletForce;
+	public float bulletForce;
 
 	public BulletState CurrentBulletState;
 
