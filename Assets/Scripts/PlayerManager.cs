@@ -8,10 +8,29 @@ public class PlayerManager : MonoBehaviour {
 
 	public State PlayerState;
 
+    public int startingLives;
+    [HideInInspector]
+    public int lives;
 	// Use this for initialization
 	void Start () {
-        startPos = transform.position;
+        lives = startingLives;
 		PlayerState = State.IsGrounded;
+        if (gameObject.name == "Player1")
+        {
+            startPos = new Vector3(5f, 13f, 0f);
+        }
+        else if (gameObject.name == "Player2")
+        {
+            startPos = new Vector3(32f, 13f, 0f);
+        }
+        else if (gameObject.name == "Player3")
+        {
+            startPos = new Vector3(5f, 1f, 0f);
+        }
+        else if (gameObject.name == "Player4")
+        {
+            startPos = new Vector3(32f, 1f, 0f);
+        }
 	}
 	
 	// Update is called once per frame
@@ -29,7 +48,12 @@ public class PlayerManager : MonoBehaviour {
 
     private void OnDisable()
     {
-        Invoke("Respawn", 1f);
+        lives--;
+        if (lives > 0)
+        {
+            Invoke("Respawn", 1f);
+        }
+        
     }
 
     private void Respawn()
